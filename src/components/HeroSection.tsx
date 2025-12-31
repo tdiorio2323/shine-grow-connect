@@ -73,7 +73,7 @@ export const HeroSection = () => {
             <Button variant="hero" size="xl" asChild>
               <a href="tel:+12018899167">
                 <Phone className="w-5 h-5" />
-                Call Jennifer
+                Call Us
               </a>
             </Button>
             <Button variant="heroSecondary" size="xl" asChild>
