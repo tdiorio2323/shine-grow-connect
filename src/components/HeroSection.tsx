@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, Heart, Users, School } from "lucide-react";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const highlights = [
   {
@@ -35,11 +36,13 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-6"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              A&J Solano — 
-              <span className="text-primary"> Thrive & Shine Center</span>
-            </h1>
+            <img 
+              src={logo} 
+              alt="A&J Solano - Thrive & Shine Center" 
+              className="h-24 md:h-32 lg:h-40 w-auto mx-auto"
+            />
           </motion.div>
 
           <motion.p
