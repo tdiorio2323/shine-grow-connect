@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Heart } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,14 +12,12 @@ export const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
             {/* Brand */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">A&J</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-background">A&J Solano</p>
-                  <p className="text-sm text-background/70">Thrive & Shine Center</p>
-                </div>
+              <div className="mb-4">
+                <img 
+                  src={logo} 
+                  alt="A&J Solano - Thrive & Shine Center" 
+                  className="h-12 w-auto brightness-0 invert"
+                />
               </div>
               <div className="flex items-center gap-2 text-background/70 text-sm mb-3">
                 <MapPin className="w-4 h-4 shrink-0" />

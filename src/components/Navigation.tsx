@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -48,14 +49,13 @@ export const Navigation = () => {
               e.preventDefault();
               handleNavClick("#home");
             }}
-            className="flex items-center gap-2"
+            className="flex items-center"
           >
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">A&J</span>
-            </div>
-            <span className="hidden sm:block font-semibold text-foreground">
-              Thrive & Shine
-            </span>
+            <img 
+              src={logo} 
+              alt="A&J Solano - Thrive & Shine Center" 
+              className="h-10 sm:h-12 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
