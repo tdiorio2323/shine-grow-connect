@@ -5,22 +5,29 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl shadow-soft hover:shadow-card",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-xl",
+        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground rounded-xl",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-xl",
+        ghost: "hover:bg-accent hover:text-accent-foreground rounded-xl",
         link: "text-primary underline-offset-4 hover:underline",
+        // Custom warm variants
+        hero: "bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl shadow-card hover:shadow-glow hover:-translate-y-0.5",
+        heroSecondary: "bg-peach text-peach-foreground hover:bg-peach/90 rounded-xl shadow-soft hover:shadow-card hover:-translate-y-0.5",
+        soft: "bg-primary-light text-primary hover:bg-primary hover:text-primary-foreground rounded-xl",
+        warm: "bg-secondary text-secondary-foreground hover:bg-peach hover:text-peach-foreground rounded-xl shadow-soft",
+        nav: "bg-transparent text-foreground hover:bg-primary-light hover:text-primary rounded-xl font-medium",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        default: "h-11 px-5 py-2.5",
+        sm: "h-9 px-4 py-2 text-sm",
+        lg: "h-13 px-8 py-3.5 text-base",
+        xl: "h-14 px-10 py-4 text-lg",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {
