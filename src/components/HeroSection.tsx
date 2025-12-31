@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, Heart, Users, School } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.png";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const highlights = [
   {
@@ -24,11 +25,20 @@ const highlights = [
 
 export const HeroSection = () => {
   return (
-    <section id="home" className="relative min-h-screen gradient-hero pt-24 pb-16 overflow-hidden">
+    <section id="home" className="relative min-h-screen pt-24 pb-16 overflow-hidden">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroBg} 
+          alt="Warm, welcoming therapy environment" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background/95" />
+      </div>
+
       {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-peach/10 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl z-[1]" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-peach/15 rounded-full blur-3xl z-[1]" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center pt-12 md:pt-20">
@@ -36,12 +46,12 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-6"
+            className="mb-8"
           >
             <img 
               src={logo} 
               alt="A&J Solano - Thrive & Shine Center" 
-              className="h-24 md:h-32 lg:h-40 w-auto mx-auto"
+              className="h-28 md:h-36 lg:h-44 w-auto mx-auto drop-shadow-lg"
             />
           </motion.div>
 
@@ -49,7 +59,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl lg:text-2xl text-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed font-medium"
           >
             Warm, supportive programs helping children grow with confidence, connection, and care.
           </motion.p>
@@ -85,10 +95,10 @@ export const HeroSection = () => {
           {highlights.map((item, index) => (
             <Card
               key={item.title}
-              className="gradient-card border-0 shadow-card hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
+              className="bg-card/95 backdrop-blur-sm border-0 shadow-card hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
             >
               <CardContent className="p-6 text-center">
-                <div className="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-7 h-7 text-primary" />
                 </div>
                 <h3 className="font-semibold text-lg text-foreground mb-2">{item.title}</h3>
