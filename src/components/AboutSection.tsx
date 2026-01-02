@@ -90,14 +90,18 @@ export const AboutSection = () => {
 
                   {/* Highlights */}
                   <div className="flex flex-wrap gap-3 mb-8">
-                    {highlights.map((item) => (
-                      <div
+                    {highlights.map((item, index) => (
+                      <motion.div
                         key={item.label}
-                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-light text-primary text-sm font-medium"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-light text-primary text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-default"
                       >
                         <item.icon className="w-4 h-4" />
                         {item.label}
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
 

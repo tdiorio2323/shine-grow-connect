@@ -94,18 +94,22 @@ export const TabbedContentSection = () => {
                     Our Programs & Services
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {programs.map((program) => (
-                      <div
+                    {programs.map((program, index) => (
+                      <motion.div
                         key={program.title}
-                        className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        className="flex items-start gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted hover:shadow-soft transition-all duration-300 group cursor-default"
                       >
-                        <div className="w-10 h-10 rounded-lg bg-primary-light flex items-center justify-center shrink-0">
-                          <program.icon className="w-5 h-5 text-primary" />
+                        <div className="w-10 h-10 rounded-lg bg-primary-light flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                          <program.icon className="w-5 h-5 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                         </div>
                         <p className="text-foreground font-medium leading-snug">
                           {program.title}
                         </p>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </CardContent>

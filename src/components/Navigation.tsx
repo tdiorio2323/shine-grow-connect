@@ -16,11 +16,25 @@ const navItems = [
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Find active section based on scroll position
+      const sections = navItems.map(item => item.href.slice(1));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(`#${sections[i]}`);
+          break;
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -67,6 +81,7 @@ export const Navigation = () => {
                 variant="nav"
                 size="sm"
                 onClick={() => handleNavClick(item.href)}
+                className={activeSection === item.href ? "bg-primary/10 text-primary" : ""}
               >
                 {item.label}
               </Button>
@@ -123,7 +138,7 @@ export const Navigation = () => {
                 <Button
                   key={item.href}
                   variant="ghost"
-                  className="justify-start"
+                  className={`justify-start ${activeSection === item.href ? "bg-primary/10 text-primary" : ""}`}
                   onClick={() => handleNavClick(item.href)}
                 >
                   {item.label}

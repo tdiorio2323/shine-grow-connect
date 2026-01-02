@@ -86,27 +86,26 @@ export const HeroSection = () => {
         </div>
 
         {/* Highlight Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {highlights.map((item, index) => (
-            <Card
+            <motion.div
               key={item.title}
-              className="bg-card/95 backdrop-blur-sm border-0 shadow-card hover:shadow-glow transition-all duration-300 hover:-translate-y-1"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 + index * 0.15 }}
             >
-              <CardContent className="p-6 text-center">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="font-semibold text-lg text-foreground mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-              </CardContent>
-            </Card>
+              <Card className="bg-card/95 backdrop-blur-sm border-0 shadow-card hover:shadow-glow transition-all duration-300 hover:-translate-y-2 group h-full">
+                <CardContent className="p-6 text-center">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <item.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <h3 className="font-semibold text-lg text-foreground mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
