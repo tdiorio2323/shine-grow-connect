@@ -1,8 +1,10 @@
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, Heart, Award, Users } from "lucide-react";
 import { motion } from "framer-motion";
-import childcareGroup from "@/assets/childcare-group.jpg";
+import { useEffect } from "react";
 
 const highlights = [
   { icon: Heart, label: "Genuine Care" },
@@ -10,66 +12,52 @@ const highlights = [
   { icon: Users, label: "Collaborative Approach" },
 ];
 
-export const AboutSection = () => {
+const About = () => {
+  useEffect(() => {
+    document.title = "About | A&J Solano — Thrive & Shine Center";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        "Meet Jennifer Solano, the heart behind A&J Solano Services. With a background in behavioral support and client advocacy, Jennifer helps individuals and families move forward with clarity, confidence, and purpose."
+      );
+    }
+  }, []);
+
   return (
-    <section id="about" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Meet Jennifer
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            The heart and soul behind A&J Solano — Thrive & Shine Center.
-          </p>
-        </motion.div>
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <Navigation />
+      <main className="pt-24 pb-20">
+        <div className="container mx-auto px-4">
+          {/* Page Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              About Thrive & Shine Center
+            </h1>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Empowering individuals and families to move forward with clarity, confidence, and purpose.
+            </p>
+          </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <Card className="border-0 shadow-card overflow-hidden">
-            <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                {/* Photo */}
+          {/* Meet Jennifer Section */}
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-0 shadow-card overflow-hidden">
+              <CardContent className="p-8 md:p-12">
                 <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="lg:col-span-2 relative"
-                >
-                  <div className="aspect-[4/5] lg:aspect-auto lg:h-full">
-                    <img
-                      src={childcareGroup}
-                      alt="Child care group activity"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Decorative overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent lg:bg-gradient-to-r" />
-                </motion.div>
-
-                {/* Bio Content */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="lg:col-span-3 p-8 md:p-10 flex flex-col justify-center"
                 >
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-foreground mb-2">
-                      Jennifer Solano
-                    </h3>
-                    <p className="text-primary font-semibold">
-                      Founder & Life Coach
-                    </p>
-                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+                    Meet Jennifer Solano
+                  </h2>
 
-                  <div className="space-y-4 text-muted-foreground leading-relaxed mb-8">
+                  <div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
                     <p>
                       Jennifer Solano is the heart behind A&J Solano Services, bringing a unique blend of real-world experience, strategic coaching, and genuine care to every client she works with. With a background in behavioral support, client advocacy, and hands-on business leadership, Jennifer is passionate about helping individuals and families move forward with clarity, confidence, and purpose.
                     </p>
@@ -82,13 +70,12 @@ export const AboutSection = () => {
                   </div>
 
                   {/* Highlights */}
-                  <div className="flex flex-wrap gap-3 mb-8">
+                  <div className="flex flex-wrap gap-3 my-8">
                     {highlights.map((item, index) => (
                       <motion.div
                         key={item.label}
                         initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-light text-primary text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-default"
                       >
@@ -99,7 +86,7 @@ export const AboutSection = () => {
                   </div>
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4">
                     <Button variant="hero" asChild>
                       <a href="tel:+12018899167">
                         <Phone className="w-4 h-4" />
@@ -114,11 +101,14 @@ export const AboutSection = () => {
                     </Button>
                   </div>
                 </motion.div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
-      </div>
-    </section>
+      </main>
+      <Footer />
+    </div>
   );
 };
+
+export default About;

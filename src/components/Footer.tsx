@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Heart, ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logo from "@/assets/logo.png";
 
@@ -25,7 +26,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
             {/* Brand */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -43,6 +44,37 @@ export const Footer = () => {
               <div className="flex items-center gap-2 text-background/70 text-sm mb-3">
                 <MapPin className="w-4 h-4 shrink-0" />
                 <span>Serving New Jersey & New York City</span>
+              </div>
+            </motion.div>
+
+            {/* Quick Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+              className="md:text-center"
+            >
+              <p className="font-semibold text-background mb-3">Quick Links</p>
+              <div className="space-y-2">
+                <Link
+                  to="/about"
+                  className="block text-background/70 hover:text-primary transition-all duration-300 text-sm"
+                >
+                  About
+                </Link>
+                <a
+                  href="/#programs"
+                  className="block text-background/70 hover:text-primary transition-all duration-300 text-sm"
+                >
+                  Programs & Services
+                </a>
+                <a
+                  href="/#contact"
+                  className="block text-background/70 hover:text-primary transition-all duration-300 text-sm"
+                >
+                  Contact
+                </a>
               </div>
             </motion.div>
 

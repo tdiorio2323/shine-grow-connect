@@ -1,29 +1,34 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Programs & Services", href: "#programs" },
-  { label: "Service Area", href: "#service-area" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#home", isRoute: false },
+  { label: "About", href: "/about", isRoute: true },
+  { label: "Programs & Services", href: "#programs", isRoute: false },
+  { label: "Service Area", href: "#service-area", isRoute: false },
+  { label: "FAQ", href: "#faq", isRoute: false },
+  { label: "Contact", href: "#contact", isRoute: false },
 ];
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
+      // Only track sections on the home page
+      if (location.pathname !== "/") return;
+
       // Find active section based on scroll position
-      const sections = navItems.map(item => item.href.slice(1));
+      const sections = navItems.filter(item => !item.isRoute).map(item => item.href.slice(1));
       const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -37,10 +42,18 @@ export const Navigation = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, isRoute: boolean) => {
     setIsMobileMenuOpen(false);
+    if (isRoute) return; // Route navigation handled by Link
+
+    if (location.pathname !== "/") {
+      // If not on home page, navigate to home then scroll
+      window.location.href = "/" + href;
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -58,33 +71,46 @@ export const Navigation = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("#home");
+          <Link
+            to="/"
+            onClick={() => {
+              if (location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
             }}
             className="flex items-center"
           >
-            <img 
-              src={logo} 
-              alt="A&J Solano - Thrive & Shine Center" 
+            <img
+              src={logo}
+              alt="A&J Solano - Thrive & Shine Center"
               className="h-10 sm:h-12 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
-              <Button
-                key={item.href}
-                variant="nav"
-                size="sm"
-                onClick={() => handleNavClick(item.href)}
-                className={activeSection === item.href ? "bg-primary/10 text-primary" : ""}
-              >
-                {item.label}
-              </Button>
+              item.isRoute ? (
+                <Button
+                  key={item.href}
+                  variant="nav"
+                  size="sm"
+                  asChild
+                  className={location.pathname === item.href ? "bg-primary/10 text-primary" : ""}
+                >
+                  <Link to={item.href}>{item.label}</Link>
+                </Button>
+              ) : (
+                <Button
+                  key={item.href}
+                  variant="nav"
+                  size="sm"
+                  onClick={() => handleNavClick(item.href, item.isRoute)}
+                  className={location.pathname === "/" && activeSection === item.href ? "bg-primary/10 text-primary" : ""}
+                >
+                  {item.label}
+                </Button>
+              )
             ))}
           </div>
 
@@ -135,14 +161,26 @@ export const Navigation = () => {
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
               {navItems.map((item) => (
-                <Button
-                  key={item.href}
-                  variant="ghost"
-                  className={`justify-start ${activeSection === item.href ? "bg-primary/10 text-primary" : ""}`}
-                  onClick={() => handleNavClick(item.href)}
-                >
-                  {item.label}
-                </Button>
+                item.isRoute ? (
+                  <Button
+                    key={item.href}
+                    variant="ghost"
+                    className={`justify-start ${location.pathname === item.href ? "bg-primary/10 text-primary" : ""}`}
+                    asChild
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Link to={item.href}>{item.label}</Link>
+                  </Button>
+                ) : (
+                  <Button
+                    key={item.href}
+                    variant="ghost"
+                    className={`justify-start ${location.pathname === "/" && activeSection === item.href ? "bg-primary/10 text-primary" : ""}`}
+                    onClick={() => handleNavClick(item.href, item.isRoute)}
+                  >
+                    {item.label}
+                  </Button>
+                )
               ))}
               <div className="flex gap-2 mt-4 pt-4 border-t border-border">
                 <Button variant="soft" className="flex-1" asChild>
