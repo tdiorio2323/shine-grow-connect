@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ServiceAreaSection } from "@/components/ServiceAreaSection";
 import { TabbedContentSection } from "@/components/TabbedContentSection";
+import { BookBundlePromo } from "@/components/BookBundlePromo";
 import { FAQSection } from "@/components/FAQSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -25,6 +26,10 @@ const Index = () => {
         <TabbedContentSection />
         <div className="bg-secondary/30">
           <SectionDivider variant="wave" className="text-secondary/30" />
+        </div>
+        <BookBundlePromo />
+        <div className="bg-background">
+          <SectionDivider variant="curve" flip className="text-secondary/30" />
         </div>
         <ServiceAreaSection />
         <div className="bg-background">

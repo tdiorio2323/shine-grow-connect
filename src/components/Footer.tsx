@@ -69,6 +69,12 @@ export const Footer = () => {
                 >
                   Programs & Services
                 </a>
+                <Link
+                  to="/book-bundle"
+                  className="block text-background/70 hover:text-primary transition-all duration-300 text-sm"
+                >
+                  Book Bundle
+                </Link>
                 <a
                   href="/#contact"
                   className="block text-background/70 hover:text-primary transition-all duration-300 text-sm"

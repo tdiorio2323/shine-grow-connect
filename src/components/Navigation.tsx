@@ -9,6 +9,7 @@ const navItems = [
   { label: "Home", href: "#home", isRoute: false },
   { label: "About", href: "/about", isRoute: true },
   { label: "Programs & Services", href: "#programs", isRoute: false },
+  { label: "Book Bundle", href: "/book-bundle", isRoute: true },
   { label: "Service Area", href: "#service-area", isRoute: false },
   { label: "FAQ", href: "#faq", isRoute: false },
   { label: "Contact", href: "#contact", isRoute: false },
