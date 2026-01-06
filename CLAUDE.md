@@ -5,11 +5,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev      # Start dev server on port 8080
-npm run build    # Production build
-npm run lint     # Run ESLint
-npm run preview  # Preview production build
+npm run dev       # Start dev server on port 8080
+npm run build     # Production build
+npm run build:dev # Development build
+npm run lint      # Run ESLint
+npm run preview   # Preview production build
 ```
+
+## Deployment
+
+This project is deployed via Vercel. It was originally scaffolded with Lovable (lovable.dev).
 
 ## Architecture
 
