@@ -93,7 +93,9 @@ export const Navigation = () => {
             <img
               src={logo}
               alt="A&J Solano - Thrive & Shine Center"
-              className="h-10 sm:h-12 w-auto"
+              className={`h-10 sm:h-12 w-auto transition-all duration-300 ${
+                !isScrolled && hasDarkHero ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" : ""
+              }`}
             />
           </Link>
 
