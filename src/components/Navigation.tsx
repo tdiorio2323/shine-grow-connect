@@ -21,6 +21,10 @@ export const Navigation = () => {
   const [activeSection, setActiveSection] = useState("#home");
   const location = useLocation();
 
+  // Pages with dark hero sections that need light text when not scrolled
+  const darkHeroPages = ["/book-bundle"];
+  const hasDarkHero = darkHeroPages.includes(location.pathname);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -61,6 +65,11 @@ export const Navigation = () => {
     }
   };
 
+  // Text color classes based on scroll state and hero type
+  const navTextClass = !isScrolled && hasDarkHero 
+    ? "text-white hover:text-white/80 hover:bg-white/10" 
+    : "";
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -97,7 +106,7 @@ export const Navigation = () => {
                   variant="nav"
                   size="sm"
                   asChild
-                  className={location.pathname === item.href ? "bg-primary/10 text-primary" : ""}
+                  className={`${navTextClass} ${location.pathname === item.href ? "bg-primary/10 text-primary" : ""}`}
                 >
                   <Link to={item.href}>{item.label}</Link>
                 </Button>
@@ -107,7 +116,7 @@ export const Navigation = () => {
                   variant="nav"
                   size="sm"
                   onClick={() => handleNavClick(item.href, item.isRoute)}
-                  className={location.pathname === "/" && activeSection === item.href ? "bg-primary/10 text-primary" : ""}
+                  className={`${navTextClass} ${location.pathname === "/" && activeSection === item.href ? "bg-primary/10 text-primary" : ""}`}
                 >
                   {item.label}
                 </Button>
@@ -143,7 +152,7 @@ export const Navigation = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className={`lg:hidden ${!isScrolled && hasDarkHero ? "text-white hover:bg-white/10" : ""}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
