@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Mail, Heart, Award, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const highlights = [
   { icon: Heart, label: "Genuine Care" },
@@ -27,22 +28,36 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
-      <main className="pt-24 pb-20">
-        <div className="container mx-auto px-4">
-          {/* Page Header */}
+      
+      {/* Hero Section */}
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroBg})` }}
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-background" />
+        
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 pt-24 pb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
               About Thrive & Shine Center
             </h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
               Empowering individuals and families to move forward with clarity, confidence, and purpose.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      <main className="pb-20">
+        <div className="container mx-auto px-4 -mt-8">
 
           {/* Meet Jennifer Section */}
           <div className="max-w-4xl mx-auto">

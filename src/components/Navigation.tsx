@@ -23,7 +23,7 @@ export const Navigation = () => {
   const location = useLocation();
 
   // Pages with dark hero sections that need light text when not scrolled
-  const darkHeroPages = ["/book-bundle"];
+  const darkHeroPages = ["/book-bundle", "/about"];
   const hasDarkHero = darkHeroPages.includes(location.pathname);
 
   useEffect(() => {
