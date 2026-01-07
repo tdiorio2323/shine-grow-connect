@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
+import logoWhite from "@/assets/logo-white.png";
 
 const navItems = [
   { label: "Home", href: "#home", isRoute: false },
@@ -91,11 +92,9 @@ export const Navigation = () => {
             className="flex items-center"
           >
             <img
-              src={logo}
+              src={!isScrolled && hasDarkHero ? logoWhite : logo}
               alt="A&J Solano - Thrive & Shine Center"
-              className={`h-10 sm:h-12 w-auto transition-all duration-300 ${
-                !isScrolled && hasDarkHero ? "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] brightness-110" : ""
-              }`}
+              className="h-10 sm:h-12 w-auto transition-all duration-300"
             />
           </Link>
 
